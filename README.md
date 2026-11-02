@@ -70,7 +70,7 @@ Usage: ls [OPTION]... [FILE]...
 For more information, try '--help'.
 yhmin@yhforwindows:~$ ls -l test.txt
 -rw-r--r-- 1 yhmin yhmin 6 Nov  1 22:39 test.txt
-yhmin@yhforwindows:~$ ls -ld testdir
+** yhmin@yhforwindows:~$ ls -ld testdir **
 drwxr-xr-x 2 yhmin yhmin 4096 Nov  1 22:36 testdir
 yhmin@yhforwindows:~$ chmod 755 testdir
 yhmin@yhforwindows:~$ ls -ld testdir
@@ -80,6 +80,8 @@ yhmin@yhforwindows:~$
 ```
 
 r=4, w=2, x=1 / 755 = 소유자7·그룹5·기타5
+
+<hr/>
 
 ### Docker 점검, 기본 운영
 
@@ -262,6 +264,8 @@ root@06f1742ac3f3:/#
 ```
 exit(종료) 와 exec(유지)
 
+<hr/>
+
 ### Dockerfile 커스텀 웹 서버
 1. app/index.html 작성
 ```
@@ -360,6 +364,8 @@ yhmin@yhforwindows:~/workstation$ docker logs web1
 2026/11/01 14:19:17 [notice] 1#1: start worker process 46
 ```
 
+<hr/>
+
 ### 포트 매핑 2회 접속
 #### 1회차 (이미 web1이 8080에서 실행 중)
 ```curl http://localhost:8080```
@@ -377,6 +383,8 @@ yhmin@yhforwindows:~/workstation$ curl http://localhost:8081
 <p>안녕하세요! 커스텀 이미지입니다.</p>
 yhmin@yhforwindows:~/workstation$
 ```
+
+<hr/>
 
 ### 바인드 마운트 실습 
 
@@ -399,6 +407,8 @@ yhmin@yhforwindows:~/workstation$ curl http://localhost:8082
 <p>index.html을 수정 해봤습니다.</p>
 ```
 - 바인드 마운트 = 내 PC 폴더를 직접 연결 → 실시간 반영
+
+- <hr/>
 
 ### 볼륨 영속성 검증
 #### 볼륨 생성
@@ -459,14 +469,15 @@ exit
 
 - 볼륨 = Docker가 관리하는 저장소 → 컨테이너 삭제돼도 데이터 유지
 
+- <hr/>
 
 ### Git 설정 & GitHub 연동
 
 1. Git 설정
 ```
-yhmin@yhforwindows:~/workstation$ git config --global user.name "nan041768-ui"
-yhmin@yhforwindows:~/workstation$ git config --global user.email "nan041768@gmail.com"
-yhmin@yhforwindows:~/workstation$ git config --global init.defaultBranch main
+**yhmin@yhforwindows:~/workstation$ git config --global user.name "nan041768-ui"**
+**yhmin@yhforwindows:~/workstation$ git config --global user.email "nan041768@gmail.com"**
+**yhmin@yhforwindows:~/workstation$ git config --global init.defaultBranch main**
 yhmin@yhforwindows:~/workstation$ git config --list
 user.name=nan041768-ui
 user.email=nan041768@gmail.com
