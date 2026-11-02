@@ -1,13 +1,13 @@
 ### 1. Ubuntu Terminal 기본 조작 로그
 
-pwd                     # 현재 위치
-ls -al                  # 숨김파일 포함 목록
-mkdir testdir           # 디렉토리 생성
-touch test.txt          # 빈 파일 생성
-cp test.txt copy.txt    # 복사
-mv copy.txt renamed.txt # 이름변경/이동
-echo "hello" > test.txt # 내용 쓰기
-cat test.txt            # 내용 확인
+pwd                     # 현재 위치<br>
+ls -al                  # 숨김파일 포함 목록 <br>
+mkdir testdir           # 디렉토리 생성 <br>
+touch test.txt          # 빈 파일 생성 <br>
+cp test.txt copy.txt    # 복사 <br>
+mv copy.txt renamed.txt # 이름변경/이동 <br>
+echo "hello" > test.txt # 내용 쓰기 <br>
+cat test.txt            # 내용 확인 <br>
 rm renamed.txt          # 삭제
 
 ```
@@ -44,18 +44,23 @@ hello
 yhmin@yhforwindows:~$ rm renamed.txt
 yhmin@yhforwindows:~$
 ```
+<p align="center">
+<img width="300" height="350" alt="image" src="https://github.com/user-attachments/assets/2c796b30-9844-46d5-b6a1-d385d71c65f8" />
+</p>
+
+
 
 <hr/>
 
 ### 2. Ubuntu 권한 실습(파일1 + 디렉토리1)
 
-ls -l test.txt          # [전] 권한 확인
+> **ls -l test.txt          # [전] 권한 확인**<br>
 chmod 644 test.txt
-ls -l test.txt          # [후] 권한 확인
+**ls -l test.txt          # [후] 권한 확인**<br>
 
-ls -ld testdir          # [전]
+> **ls -ld testdir          # [전]<br>**
 chmod 755 testdir
-ls -ld testdir          # [후]
+**ls -ld testdir          # [후]**
 
 
 ```
@@ -81,17 +86,45 @@ yhmin@yhforwindows:~$
 
 ```
 
-r=4, w=2, x=1 / 755 = 소유자7·그룹5·기타5
+#### *r=4, w=2, x=1 / 755 = 소유자7·그룹5·기타5*
+**1. 알파벳과 숫자의 의미 (권한 점수 부여)**<br>
+r (Read, 4점): 읽기 권한 (파일 내용 보기, 폴더 안의 목록 확인)
+w (Write, 2점): 쓰기 권한 (파일 내용 수정, 폴더에 파일 추가/삭제)
+x (eXecute, 1점): 실행 권한 (프로그램 실행, 폴더 안으로 들어가기)<br>
+
+**2. 권한을 섞는 방법 (숫자 더하기)**<br>
+부여하고 싶은 권한의 점수를 모두 더해서 하나의 숫자로 생성<br>
+7 (4+2+1): 읽기 + 쓰기 + 실행 ➔ 모든 권한<br>
+6 (4+2): 읽기 + 쓰기 ➔ 내용을 보고 수정 가능 (실행 불가)<br>
+5 (4+1): 읽기 + 실행 ➔ 내용을 보고 실행 가능 (수정 불가)<br>
+4 (4): 읽기 ➔ 오직 읽기만 가능<br>
+
+**3. 세 자리 숫자(예: 755, 644)의 의미**<br>
+세 개의 숫자는 왼쪽부터 순서대로 '나(소유자) - 우리 팀(그룹) - 남들(기타)'에게 주는 권한<br>
+
+*755의 뜻 = (위 실습의 testdir 폴더)*<br>
+첫째 자리 7 (소유자): 주인이니까 읽기, 쓰기, 실행 모두 가능.<br>
+둘째 자리 5 (그룹): 같은 팀원들은 폴더를 열어볼 수 있지만 수정은 불가.<br>
+셋째 자리 5 (기타): 외부인들도 폴더를 열어볼 수 있지만 수정은 불가.<br>
+
+*644의 뜻 (위 실습의 test.txt 파일)*<br>
+첫째 자리 6 (소유자): 주인은 내용을 읽고 수정 가능.<br>
+둘째 자리 4 (그룹): 팀원들은 오직 읽기만 가능.<br>
+셋째 자리 4 (기타): 외부인들도 오직 읽기만 가능.<br>
 
 <hr/>
 
 ### 3. Docker 점검, 기본 운영
 
-docker --version        # 버전
-docker info             # 데몬 동작 확인
-docker run hello-world  # 동작 테스트
-docker images           # 이미지 목록
+docker --version        # 버전<br>
+docker info             # 데몬 동작 확인<br>
+docker run hello-world  # 동작 테스트<br>
+docker images           # 이미지 목록<br>
 docker ps -a            # 컨테이너 목록
+
+> **한줄 요약**
+> - Docker 데몬(버전 29.9.2)은 WSL2 커널 기반의 Docker Desktop(Linux) 환경에서 정상 작동 중 
+> - 명령어 실행 시점 기준으로 보유한 컨테이너와 이미지가 없는 초기 유휴 상태
 
 ```
 yhmin@yhforwindows:~$ docker --version
@@ -203,7 +236,6 @@ Server:
  Live Restore Enabled: false
  Firewall Backend: iptables
 
-
 yhmin@yhforwindows:~$ docker run hello-world
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
@@ -237,14 +269,12 @@ yhmin@yhforwindows:~$ docker ps -a
 CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
 903488522f8f   hello-world   "/hello"   36 seconds ago   Exited (0) 36 seconds ago             interesting_goodall
 65df614df491   hello-world   "/hello"   2 minutes ago    Exited (0) 2 minutes ago              serene_chaplygin
-
 ```
-- Ubuntu 컨테이너 진입
-docker run -it ubuntu bash
-   (컨테이너 안에서)
-ls
-echo "hello from container"
-exit
+> **Ubuntu 컨테이너 진입**<br>
+docker run -it ubuntu bash  (컨테이너 안에서)<br>
+ls<br>
+echo "hello from container"<br>
+exit<br>
 
 ```
 yhmin@yhforwindows:~$ docker run -it ubuntu bash
@@ -263,7 +293,8 @@ root@06f1742ac3f3:/# echo "hello from container"
 hello from container
 root@06f1742ac3f3:/#
 ```
-exit(종료) 와 exec(유지)
+> exit(종료) = 입력 빠져나오기<br>
+> exec(유지) = 입력 계속하기<br>
 
 <hr/>
 
