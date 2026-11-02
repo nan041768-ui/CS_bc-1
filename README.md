@@ -1,4 +1,4 @@
-### Ubuntu Terminal 기본 조작 로그
+### 1. Ubuntu Terminal 기본 조작 로그
 
 pwd                     # 현재 위치
 ls -al                  # 숨김파일 포함 목록
@@ -45,7 +45,9 @@ yhmin@yhforwindows:~$ rm renamed.txt
 yhmin@yhforwindows:~$
 ```
 
-### Ubuntu 권한 실습(파일1 + 디렉토리1)
+<hr/>
+
+### 2. Ubuntu 권한 실습(파일1 + 디렉토리1)
 
 ls -l test.txt          # [전] 권한 확인
 chmod 644 test.txt
@@ -83,7 +85,7 @@ r=4, w=2, x=1 / 755 = 소유자7·그룹5·기타5
 
 <hr/>
 
-### Docker 점검, 기본 운영
+### 3. Docker 점검, 기본 운영
 
 docker --version        # 버전
 docker info             # 데몬 동작 확인
@@ -94,7 +96,6 @@ docker ps -a            # 컨테이너 목록
 ```
 yhmin@yhforwindows:~$ docker --version
 Docker version 29.9.2, build a82e528
-
 
 yhmin@yhforwindows:~$ docker info
 Client:
@@ -266,8 +267,8 @@ exit(종료) 와 exec(유지)
 
 <hr/>
 
-### Dockerfile 커스텀 웹 서버
-1. app/index.html 작성
+### 4. Dockerfile 커스텀 웹 서버
+**1. app/index.html 작성**
 ```
 yhmin@yhforwindows:~/workstation$ mkdir -p app
 yhmin@yhforwindows:~/workstation$ cat > app/index.html <<'EOF'
@@ -275,7 +276,7 @@ yhmin@yhforwindows:~/workstation$ cat > app/index.html <<'EOF'
 > <p>안녕하세요! 커스텀 이미지입니다.</p>
 > EOF
 ```
-2. Dockerfile 작성 (workstation 폴더)
+**2. Dockerfile 작성 (workstation 폴더)**
 ```
 yhmin@yhforwindows:~/workstation$ cat > Dockerfile << 'EOF'
 > FROM nginx:latest
@@ -287,7 +288,7 @@ FROM nginx:latest
 COPY app/index.html /usr/share/nginx/html/index.html
 ```
 
-3. 빌드 & 실행
+**3. 빌드 & 실행**
 ```
 yhmin@yhforwindows:~/workstation$ docker build -t my-web .
 [+] Building 12.5s (7/7) FINISHED docker:defa
@@ -366,7 +367,7 @@ yhmin@yhforwindows:~/workstation$ docker logs web1
 
 <hr/>
 
-### 포트 매핑 2회 접속
+### 4. 포트 매핑 2회 접속
 #### 1회차 (이미 web1이 8080에서 실행 중)
 ```curl http://localhost:8080```
 - curl: 웹 주소에 접속해서 응답 내용을 터미널에 보여주는 명령어
@@ -386,9 +387,9 @@ yhmin@yhforwindows:~/workstation$
 
 <hr/>
 
-### 바인드 마운트 실습 
+### 5. 바인드 마운트 실습 
 
-- 호스트의 app 폴더를 컨테이너에 직접 연결
+- **호스트의 app 폴더를 컨테이너에 직접 연결**
 ```
 yhmin@yhforwindows:~/workstation$ docker run -d -p 8082:80 -v $(pwd)/app:/usr/share/nginx/html --name web3 my-web
 272b20ab47c8d06d37bb07130034bbda86d24e1f3a37aa0badbda8e170cfcdef
@@ -398,7 +399,7 @@ yhmin@yhforwindows:~/workstation$ curl http://localhost:8082
 yhmin@yhforwindows:~/workstation$
 
 ```
-- VSCode에서 app/index.html 수정 후 변경 내용 확인
+- **VSCode에서 app/index.html 수정 후 변경 내용 확인**
 
 ```
 yhmin@yhforwindows:~/workstation$ curl http://localhost:8082
@@ -406,11 +407,11 @@ yhmin@yhforwindows:~/workstation$ curl http://localhost:8082
 <p>안녕하세요! 커스텀 이미지입니다.</p>
 <p>index.html을 수정 해봤습니다.</p>
 ```
-- 바인드 마운트 = 내 PC 폴더를 직접 연결 → 실시간 반영
+- **바인드 마운트 = 내 PC 폴더를 직접 연결 → 실시간 반영**
 
 - <hr/>
 
-### 볼륨 영속성 검증
+### 6. 볼륨 영속성 검증
 #### 볼륨 생성
 docker volume create mydata
 
@@ -471,9 +472,9 @@ exit
 
 - <hr/>
 
-### Git 설정 & GitHub 연동
+### 7. Git 설정 & GitHub 연동
 
-1. Git 설정
+**1. Git 설정**
 ```
 **yhmin@yhforwindows:~/workstation$ git config --global user.name "nan041768-ui"**
 **yhmin@yhforwindows:~/workstation$ git config --global user.email "nan041768@gmail.com"**
@@ -484,9 +485,9 @@ user.email=nan041768@gmail.com
 init.defaultbranch=main
 ```
 
-2. GitHub 에서 저장소 생성 - 완료
+**2. GitHub 에서 저장소 생성 - 완료**
 
-3. 민감정보 보호
+**3. 민감정보 보호**
 ```
 yhmin@yhforwindows:~/workstation$ touch .gitignore
 ```
